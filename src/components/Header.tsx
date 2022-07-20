@@ -34,13 +34,17 @@ const Header: React.FC = () => {
               </Nav.Link>
             </LinkContainer>
             <NavDropdown
-              title={<i className="bi bi-person"></i>}
+              title={
+                <>
+                  <i className="bi bi-person"></i> User
+                </>
+              }
               id="basic-nav-dropdown"
             >
               {isLoggedIn ? (
                 <>
                   <LinkContainer to="/profile">
-                    <NavDropdown.Item href="#action/3.1">
+                    <NavDropdown.Item>
                       <i className="bi bi-person"></i> Profile
                     </NavDropdown.Item>
                   </LinkContainer>
@@ -52,7 +56,7 @@ const Header: React.FC = () => {
               ) : (
                 <>
                   <LinkContainer to="/login">
-                    <NavDropdown.Item href="#action/3.4">
+                    <NavDropdown.Item>
                       <i className="bi bi-box-arrow-in-right"></i> Login
                     </NavDropdown.Item>
                   </LinkContainer>

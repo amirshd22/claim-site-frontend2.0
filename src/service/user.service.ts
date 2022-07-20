@@ -15,8 +15,8 @@ export const login = async (username: string, password: string) => {
     );
 
     if (status === 200 && typeof data === "object") {
-      localStorage.setItem("userInfo", JSON.stringify(data.token));
-      return data.token;
+      localStorage.setItem("userInfo", JSON.stringify(data.access));
+      return data.access;
     }
     return false;
   } catch (error: any) {
@@ -51,8 +51,8 @@ export const register = async (user: REGISTER_USER) => {
 
     const { data, status } = await client.post("users/register/", user, config);
     if (status === 200 && typeof data === "object") {
-      localStorage.setItem("userInfo", JSON.stringify(data.token));
-      return data.token;
+      localStorage.setItem("userInfo", JSON.stringify(data.access));
+      return data.access;
     }
     return false;
   } catch (error) {

@@ -1,10 +1,10 @@
 import React from "react";
-import { Formik } from "formik";
-
+import { Formik, FormikValues } from "formik";
+import Container from "react-bootstrap/Container";
 interface FormProps {
   initialValues: object;
   validationSchema: object;
-  onSubmit: () => void;
+  onSubmit: (values: FormikValues) => void;
   children: React.ReactNode;
 }
 
@@ -20,7 +20,7 @@ const FormContainer: React.FC<FormProps> = ({
       validationSchema={validationSchema}
       onSubmit={onSubmit}
     >
-      {children}
+      {() => <Container style={{ width: "100%" }}>{children}</Container>}
     </Formik>
   );
 };
