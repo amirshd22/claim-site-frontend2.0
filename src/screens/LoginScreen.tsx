@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Screen from "../components/Screen";
 import Card from "react-bootstrap/Card";
 import { colors } from "../config";
@@ -18,6 +18,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const LoginScreen: React.FC = () => {
+  const [loading, setLoading] = useState<boolean>(false);
   const isLoggedIn = useLogin((state) => state.isLoggedIn);
   const setAccess = useLogin((state) => state.setAccess);
   const setIsLogIn = useLogin((state) => state.setIsLogIn);
@@ -32,7 +33,9 @@ const LoginScreen: React.FC = () => {
 
   const loginHandler = async (values: FormikValues) => {
     try {
+      setLoading(true);
       const data = await login(values.username, values.password);
+      setLoading(false);
       if (data) {
         setAccess(data);
         setIsLogIn(true);
@@ -75,8 +78,8 @@ const LoginScreen: React.FC = () => {
               />
               <SubmitButton
                 title="Login"
-                variant="outline-primary"
-                loading={false}
+                variant="primary"
+                loading={loading}
                 style={{ width: "100%" }}
               />
             </FormContainer>

@@ -17,11 +17,16 @@ const SubmitButton: React.FC<buttonProps> = ({
   const { handleSubmit } = useFormikContext();
 
   return loading ? (
-    <Button disabled variant={variant}>
+    <Button style={style} className="text-light" disabled variant={variant}>
       Loading...
     </Button>
   ) : (
-    <Button onClick={() => handleSubmit()} variant={variant} style={style}>
+    <Button
+      onClick={() => handleSubmit()}
+      variant={variant}
+      style={style}
+      className="text-light"
+    >
       {title}
     </Button>
   );

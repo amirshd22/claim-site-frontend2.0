@@ -17,7 +17,7 @@ const Header: React.FC = () => {
     }
   };
   return (
-    <Navbar bg="light" expand="md" sticky="top">
+    <Navbar bg="success" variant="dark" expand="lg" sticky="top">
       <Container>
         <Navbar.Brand href="#home">Vader Cash</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -44,19 +44,19 @@ const Header: React.FC = () => {
               {isLoggedIn ? (
                 <>
                   <LinkContainer to="/profile">
-                    <NavDropdown.Item>
+                    <NavDropdown.Item active={false}>
                       <i className="bi bi-person"></i> Profile
                     </NavDropdown.Item>
                   </LinkContainer>
 
-                  <NavDropdown.Item onClick={logUserOut}>
+                  <NavDropdown.Item onClick={logUserOut} active={false}>
                     <i className="bi bi-box-arrow-left"></i> Logout
                   </NavDropdown.Item>
                 </>
               ) : (
                 <>
                   <LinkContainer to="/login">
-                    <NavDropdown.Item>
+                    <NavDropdown.Item active={false}>
                       <i className="bi bi-box-arrow-in-right"></i> Login
                     </NavDropdown.Item>
                   </LinkContainer>
@@ -64,13 +64,13 @@ const Header: React.FC = () => {
               )}
             </NavDropdown>
           </Nav>
-          <Navbar.Text>
+          <Nav>
             <LinkContainer to="/contact-us">
               <Nav.Link>
                 <i className="bi bi-telephone"></i> Contact Us
               </Nav.Link>
             </LinkContainer>
-          </Navbar.Text>
+          </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>

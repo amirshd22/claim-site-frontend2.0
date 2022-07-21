@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Screen from "../components/Screen";
 import Card from "react-bootstrap/Card";
 import { colors } from "../config";
@@ -29,6 +29,8 @@ const validationSchema = Yup.object().shape({
     .label("Confirm password"),
 });
 const RegisterScreen: React.FC = () => {
+  const [loading, setLoading] = useState<boolean>(false);
+
   const isLoggedIn = useLogin((state) => state.isLoggedIn);
   const setAccess = useLogin((state) => state.setAccess);
   const setIsLogIn = useLogin((state) => state.setIsLogIn);
@@ -38,6 +40,7 @@ const RegisterScreen: React.FC = () => {
 
   const registerUser = async (values: FormikValues) => {
     try {
+      setLoading(true);
       const data = await register({
         username: values.username,
         password: values.password,
@@ -45,7 +48,10 @@ const RegisterScreen: React.FC = () => {
         telegram_id: values.telegram_id,
         wallet_address: values.wallet_address,
       });
-      if (data) {
+      setLoading(false);
+      if (typeof data === "string") {
+        console.log(data);
+
         setAccess(data);
         setIsLogIn(true);
       }
@@ -130,8 +136,8 @@ const RegisterScreen: React.FC = () => {
               />
               <SubmitButton
                 title="Register"
-                variant="outline-primary"
-                loading={false}
+                variant="primary"
+                loading={loading}
                 style={{ width: "100%" }}
               />
             </FormContainer>
