@@ -19,7 +19,11 @@ const Header: React.FC = () => {
   return (
     <Navbar bg="success" variant="dark" expand="lg" sticky="top">
       <Container>
-        <Navbar.Brand href="#home">Vader Cash</Navbar.Brand>
+        <Navbar.Brand>
+          <LinkContainer to="/">
+            <>VaderCash</>
+          </LinkContainer>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
@@ -67,7 +71,27 @@ const Header: React.FC = () => {
           <Nav>
             <LinkContainer to="/contact-us">
               <Nav.Link>
-                <i className="bi bi-telephone"></i> Contact Us
+                <i className="bi bi-telephone"></i>
+              </Nav.Link>
+            </LinkContainer>
+            <LinkContainer to="/">
+              <Nav.Link>
+                <i className="bi bi-twitter"></i>
+              </Nav.Link>
+            </LinkContainer>
+            <LinkContainer to="/">
+              <Nav.Link>
+                <i className="bi bi-telegram"></i>
+              </Nav.Link>
+            </LinkContainer>
+            <LinkContainer to="/">
+              <Nav.Link>
+                <i className="bi bi-youtube"></i>
+              </Nav.Link>
+            </LinkContainer>
+            <LinkContainer to="/">
+              <Nav.Link>
+                <i className="bi bi-instagram"></i>
               </Nav.Link>
             </LinkContainer>
           </Nav>

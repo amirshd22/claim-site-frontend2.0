@@ -7,6 +7,7 @@ import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 import ContactUsScreen from "./screens/ContactUsScreen";
+import Footer from "./components/Footer";
 const App: React.FC = () => {
   const setAccess = useLogin((state) => state.setAccess);
   const setIsLogIn = useLogin((state) => state.setIsLogIn);
@@ -34,6 +35,7 @@ const App: React.FC = () => {
             <Route path="/contact-us" element={<ContactUsScreen />} />
           </Routes>
         </main>
+        <Footer />
       </Router>
     </div>
   );
