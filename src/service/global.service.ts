@@ -17,3 +17,21 @@ export const getFAQs = async () => {
     console.log(error);
   }
 };
+
+export const getGlobal = async () => {
+  try {
+    const config = {
+      headers: {
+        "Content-type": "application/json",
+      },
+      validateStatus: () => true,
+    };
+    const { data, status } = await client.get("systems/global/", config);
+    if (status === 200) {
+      return data;
+    }
+    throw new Error(data.details);
+  } catch (error) {
+    alert(error);
+  }
+};

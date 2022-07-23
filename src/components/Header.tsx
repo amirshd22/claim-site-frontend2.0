@@ -3,9 +3,11 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
+
 import { useLogin } from "../stores";
 import { LinkContainer } from "react-router-bootstrap";
 import { logout } from "../service";
+
 const Header: React.FC = () => {
   const isLoggedIn = useLogin((state) => state.isLoggedIn);
   const logUserOut = () => {
@@ -17,12 +19,15 @@ const Header: React.FC = () => {
     }
   };
   return (
-    <Navbar bg="success" variant="dark" expand="lg" sticky="top">
+    <Navbar bg="black" variant="dark" expand="lg" sticky="top">
       <Container>
         <Navbar.Brand>
-          <LinkContainer to="/">
-            <>VaderCash</>
-          </LinkContainer>
+          <img
+            src="./logo.png"
+            width="40"
+            className="d-inline-block align-top"
+            alt="logo"
+          />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -38,6 +43,7 @@ const Header: React.FC = () => {
               </Nav.Link>
             </LinkContainer>
             <NavDropdown
+              menuVariant="dark"
               title={
                 <>
                   <i className="bi bi-person"></i> User
@@ -69,31 +75,32 @@ const Header: React.FC = () => {
             </NavDropdown>
           </Nav>
           <Nav>
-            <LinkContainer to="/contact-us">
-              <Nav.Link>
-                <i className="bi bi-telephone"></i>
-              </Nav.Link>
-            </LinkContainer>
-            <LinkContainer to="/">
-              <Nav.Link>
-                <i className="bi bi-twitter"></i>
-              </Nav.Link>
-            </LinkContainer>
-            <LinkContainer to="/">
-              <Nav.Link>
-                <i className="bi bi-telegram"></i>
-              </Nav.Link>
-            </LinkContainer>
-            <LinkContainer to="/">
-              <Nav.Link>
-                <i className="bi bi-youtube"></i>
-              </Nav.Link>
-            </LinkContainer>
-            <LinkContainer to="/">
-              <Nav.Link>
-                <i className="bi bi-instagram"></i>
-              </Nav.Link>
-            </LinkContainer>
+            <NavDropdown
+              menuVariant="dark"
+              title={
+                <>
+                  <i className="bi bi-globe"></i> Socials
+                </>
+              }
+            >
+              <LinkContainer to="/contact-us">
+                <NavDropdown.Item>
+                  <i className="bi bi-telephone"></i> ContactUs
+                </NavDropdown.Item>
+              </LinkContainer>
+              <NavDropdown.Item href="https://www.twitter.com">
+                <i className="bi bi-twitter"></i> Twitter
+              </NavDropdown.Item>
+              <NavDropdown.Item href="https://www.telegram.org">
+                <i className="bi bi-telegram"></i> Telegram
+              </NavDropdown.Item>
+              <NavDropdown.Item href="https://www.youtube.com">
+                <i className="bi bi-youtube"></i> Youtube
+              </NavDropdown.Item>
+              <NavDropdown.Item href="https://www.instagram.com">
+                <i className="bi bi-instagram"></i> Instagram
+              </NavDropdown.Item>
+            </NavDropdown>
           </Nav>
         </Navbar.Collapse>
       </Container>

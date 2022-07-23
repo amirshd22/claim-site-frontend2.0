@@ -1,0 +1,9 @@
+.card-home {
+  width: 100%;
+}
+
+@media screen and (min-width: 770px) {
+  .card-home {
+    width: 49%;
+  }
+}
