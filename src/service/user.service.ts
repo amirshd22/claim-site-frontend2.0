@@ -38,6 +38,7 @@ interface REGISTER_USER {
   wallet_address: string;
   telegram_id: string;
   referral: string;
+  token: string | null | undefined;
 }
 
 export const register = async (user: REGISTER_USER) => {
@@ -55,10 +56,8 @@ export const register = async (user: REGISTER_USER) => {
       localStorage.setItem("userInfo", JSON.stringify(data.token));
       return data.token;
     }
-    return {
-      accepted: false,
-      details: data,
-    };
+
+    throw new Error(data);
   } catch (error) {
     console.log(error);
   }

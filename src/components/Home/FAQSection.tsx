@@ -12,6 +12,7 @@ const FAQSection: React.FC = () => {
 
   useEffect(() => {
     fetchFAQs();
+    // eslint-disable-next-line
   }, []);
 
   const fetchFAQs = async () => {

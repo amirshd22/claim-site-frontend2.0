@@ -4,7 +4,6 @@ import GlobalInfoSection from "../components/Home/GlobalInfoSection";
 import Screen from "../components/Screen";
 import { getGlobal } from "../service/global.service";
 import { useGlobal } from "../stores/globalStore";
-
 const HomeScreen: React.FC = () => {
   const setGlobal = useGlobal((state) => state.setGlobal);
   useEffect(() => {
@@ -23,7 +22,11 @@ const HomeScreen: React.FC = () => {
   return (
     <div>
       <div>
-        <img src="./vader.png" style={{ width: "100%" }} alt="banner" />
+        <img
+          src="https://api.vadercash.com/images/Vader.png"
+          style={{ width: "100%" }}
+          alt="banner"
+        />
       </div>
       <Screen>
         <div className="mt-5">

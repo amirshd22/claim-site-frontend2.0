@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Screen from "../components/Screen";
 import Card from "react-bootstrap/Card";
 import { colors } from "../config";
@@ -11,6 +11,7 @@ import { FormikValues } from "formik";
 import SubmitButton from "../components/forms/SubmitButton";
 import { useLogin } from "../stores";
 import { register } from "../service";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const validationSchema = Yup.object().shape({
   username: Yup.string().required("Email is Required").label("Username"),
@@ -38,25 +39,32 @@ const RegisterScreen: React.FC = () => {
   const location = useLocation();
   const redirect = location.search ? location.search.split("=")[1] : "/";
 
+  const captchaRef = useRef<ReCAPTCHA>(null);
+
   const registerUser = async (values: FormikValues) => {
     try {
-      setLoading(true);
-      const data = await register({
-        username: values.username,
-        password: values.password,
-        referral: values.referral,
-        telegram_id: values.telegram_id,
-        wallet_address: values.wallet_address,
-      });
-      setLoading(false);
-      if (typeof data === "string") {
-        console.log(data);
+      const token = captchaRef.current?.getValue();
+      captchaRef.current?.reset();
 
-        setAccess(data);
-        setIsLogIn(true);
+      if (typeof token === "string") {
+        setLoading(true);
+        const data = await register({
+          username: values.username,
+          password: values.password,
+          referral: values.referral,
+          telegram_id: values.telegram_id,
+          wallet_address: values.wallet_address,
+          token,
+        });
+        if (typeof data === "string") {
+          setLoading(false);
+          setAccess(data);
+          setIsLogIn(true);
+        }
       }
+      throw new Error("Recaptcha required");
     } catch (error) {
-      console.log(error);
+      alert(error);
     }
   };
 
@@ -133,6 +141,12 @@ const RegisterScreen: React.FC = () => {
                 placeholder="Enter referral code"
                 type="text"
                 width="100%"
+              />
+              <ReCAPTCHA
+                sitekey="6LfkCRQhAAAAAGKfe-DqStSqB9l4xCJhX5VKB7jR"
+                ref={captchaRef}
+                theme="dark"
+                className="mt-1 mb-1"
               />
               <SubmitButton
                 title="Register"

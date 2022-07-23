@@ -44,6 +44,7 @@ const LoginScreen: React.FC = () => {
       console.log(error);
     }
   };
+
   return (
     <Screen>
       <div className="d-flex w-100 mt-5">
@@ -76,6 +77,7 @@ const LoginScreen: React.FC = () => {
                 type="password"
                 width="100%"
               />
+
               <SubmitButton
                 title="Login"
                 variant="primary"
