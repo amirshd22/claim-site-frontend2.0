@@ -42,43 +42,27 @@ const Header: React.FC = () => {
                 <i className="bi bi-filetype-pdf"></i> White Paper
               </Nav.Link>
             </LinkContainer>
-            <NavDropdown
-              menuVariant="dark"
-              title={
-                <>
-                  <i className="bi bi-person"></i>{" "}
-                  {isLoggedIn ? "Profile" : "Login/Register"}
-                </>
-              }
-              id="basic-nav-dropdown"
-            >
-              {isLoggedIn ? (
-                <>
-                  <LinkContainer to="/profile">
-                    <NavDropdown.Item active={false}>
-                      <i className="bi bi-person"></i> Profile
-                    </NavDropdown.Item>
-                  </LinkContainer>
-
-                  <NavDropdown.Item onClick={logUserOut} active={false}>
-                    <i className="bi bi-box-arrow-left"></i> Logout
+            {isLoggedIn && (
+              <NavDropdown
+                menuVariant="dark"
+                title={
+                  <>
+                    <i className="bi bi-person"></i> Profile
+                  </>
+                }
+                id="basic-nav-dropdown"
+              >
+                <LinkContainer to="/profile">
+                  <NavDropdown.Item active={false}>
+                    <i className="bi bi-person"></i> Profile
                   </NavDropdown.Item>
-                </>
-              ) : (
-                <>
-                  <LinkContainer to="/login">
-                    <NavDropdown.Item active={false}>
-                      <i className="bi bi-box-arrow-in-right"></i> Login
-                    </NavDropdown.Item>
-                  </LinkContainer>
-                  <LinkContainer to="/register">
-                    <NavDropdown.Item active={false}>
-                      <i className="bi bi-person-check"></i> Register
-                    </NavDropdown.Item>
-                  </LinkContainer>
-                </>
-              )}
-            </NavDropdown>
+                </LinkContainer>
+
+                <NavDropdown.Item onClick={logUserOut} active={false}>
+                  <i className="bi bi-box-arrow-left"></i> Logout
+                </NavDropdown.Item>
+              </NavDropdown>
+            )}
           </Nav>
           <Nav>
             <NavDropdown

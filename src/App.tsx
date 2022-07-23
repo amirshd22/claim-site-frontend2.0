@@ -3,8 +3,6 @@ import { useLogin } from "./stores";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import HomeScreen from "./screens/HomeScreen";
-import LoginScreen from "./screens/LoginScreen";
-import RegisterScreen from "./screens/RegisterScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 import ContactUsScreen from "./screens/ContactUsScreen";
 import Footer from "./components/Footer";
@@ -29,8 +27,6 @@ const App: React.FC = () => {
         <main>
           <Routes>
             <Route path="/" element={<HomeScreen />} />
-            <Route path="/login" element={<LoginScreen />} />
-            <Route path="/register" element={<RegisterScreen />} />
             <Route path="/profile" element={<ProfileScreen />} />
             <Route path="/contact-us" element={<ContactUsScreen />} />
           </Routes>
