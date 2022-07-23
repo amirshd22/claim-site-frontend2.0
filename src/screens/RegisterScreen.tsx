@@ -62,7 +62,6 @@ const RegisterScreen: React.FC = () => {
           setIsLogIn(true);
         }
       }
-      throw new Error("Recaptcha required");
     } catch (error) {
       alert(error);
     }

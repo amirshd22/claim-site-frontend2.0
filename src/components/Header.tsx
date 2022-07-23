@@ -46,7 +46,8 @@ const Header: React.FC = () => {
               menuVariant="dark"
               title={
                 <>
-                  <i className="bi bi-person"></i> User
+                  <i className="bi bi-person"></i>{" "}
+                  {isLoggedIn ? "Profile" : "Login/Register"}
                 </>
               }
               id="basic-nav-dropdown"
@@ -68,6 +69,11 @@ const Header: React.FC = () => {
                   <LinkContainer to="/login">
                     <NavDropdown.Item active={false}>
                       <i className="bi bi-box-arrow-in-right"></i> Login
+                    </NavDropdown.Item>
+                  </LinkContainer>
+                  <LinkContainer to="/register">
+                    <NavDropdown.Item active={false}>
+                      <i className="bi bi-person-check"></i> Register
                     </NavDropdown.Item>
                   </LinkContainer>
                 </>
