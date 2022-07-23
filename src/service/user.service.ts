@@ -37,7 +37,7 @@ interface REGISTER_USER {
   password: string;
   wallet_address: string;
   telegram_id: string;
-  referral: string;
+  referral: string | null;
   token: string | null | undefined;
 }
 

@@ -22,7 +22,7 @@ const ProfileScreen: React.FC = () => {
   const setProfile = useProfile((state) => state.setProfile);
 
   useEffect(() => {
-    if (!isLoggedIn) navigate("/login?redirect=/profile");
+    if (!isLoggedIn) navigate("/");
     fetchProfile();
     // eslint-disable-next-line
   }, [isLoggedIn, navigate]);
@@ -41,7 +41,9 @@ const ProfileScreen: React.FC = () => {
   };
 
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(profile.id);
+    navigator.clipboard.writeText(
+      `https://vadercash.com/referral/${profile.id}`
+    );
     alert("copied");
   };
 
@@ -128,11 +130,13 @@ const ProfileScreen: React.FC = () => {
             />
             <ListGroup.Item>
               <p style={{ color: colors.gray }} className="text-center">
-                The code below is your referral code,give this to a friend or
+                The link below is your referral link,give this to a friend or
                 someone you know and earn %30 of their each claim
               </p>
               <div className="d-flex flex-column   justify-content-around align-items-center">
-                <p className="text-primary text-center">{profile.id}</p>
+                <p className="text-primary text-center">
+                  https://vadercash.com/referral/{profile.id}
+                </p>
                 <Button
                   size="sm"
                   variant="dark"

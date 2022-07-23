@@ -12,6 +12,7 @@ const App: React.FC = () => {
   useEffect(() => {
     try {
       const userInfo = localStorage.getItem("userInfo");
+
       if (userInfo) {
         setAccess(JSON.parse(userInfo));
         setIsLogIn(true);
@@ -27,6 +28,7 @@ const App: React.FC = () => {
         <main>
           <Routes>
             <Route path="/" element={<HomeScreen />} />
+            <Route path="/referral/:id" element={<HomeScreen />} />
             <Route path="/profile" element={<ProfileScreen />} />
             <Route path="/contact-us" element={<ContactUsScreen />} />
           </Routes>

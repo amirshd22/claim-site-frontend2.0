@@ -78,16 +78,16 @@ const Header: React.FC = () => {
                   <i className="bi bi-telephone"></i> ContactUs
                 </NavDropdown.Item>
               </LinkContainer>
-              <NavDropdown.Item href="https://www.twitter.com">
+              <NavDropdown.Item href="https://www.twitter.com/vadercash">
                 <i className="bi bi-twitter"></i> Twitter
               </NavDropdown.Item>
-              <NavDropdown.Item href="https://www.telegram.org">
+              <NavDropdown.Item href="https://t.me/vadercash">
                 <i className="bi bi-telegram"></i> Telegram
               </NavDropdown.Item>
-              <NavDropdown.Item href="https://www.youtube.com">
+              <NavDropdown.Item href="https://www.youtube.com/vadercash">
                 <i className="bi bi-youtube"></i> Youtube
               </NavDropdown.Item>
-              <NavDropdown.Item href="https://www.instagram.com">
+              <NavDropdown.Item href="https://www.instagram.com/vadercash">
                 <i className="bi bi-instagram"></i> Instagram
               </NavDropdown.Item>
             </NavDropdown>

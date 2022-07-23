@@ -7,12 +7,23 @@ import { useLogin } from "../stores";
 import { useGlobal } from "../stores/globalStore";
 import LoginScreen from "./LoginScreen";
 import RegisterScreen from "./RegisterScreen";
+import { useParams } from "react-router-dom";
+import TelegramHome from "../components/Home/TelegramHome";
+
 const HomeScreen: React.FC = () => {
+  const params = useParams();
+
   const setGlobal = useGlobal((state) => state.setGlobal);
+  const setRef = useLogin((state) => state.setRef);
+
   const onLogin = useLogin((state) => state.onLogin);
   useEffect(() => {
     fetchGlobal();
   });
+
+  if (params.id) {
+    setRef(params.id);
+  }
 
   const fetchGlobal = async () => {
     try {
@@ -35,6 +46,7 @@ const HomeScreen: React.FC = () => {
       <Screen>
         <div className="mt-5">
           <GlobalInfoSection />
+          <TelegramHome />
           <FAQSection />
           {onLogin ? <LoginScreen /> : <RegisterScreen />}
         </div>

@@ -20,10 +20,6 @@ const validationSchema = Yup.object().shape({
   password: Yup.string()
     .required("Telegram id is Required")
     .label("Telegram Id"),
-  confirmPassword: Yup.string()
-    .oneOf([Yup.ref("password"), "null"], "Telegram id don't match")
-    .required()
-    .label("Confirm telegram id"),
 });
 const RegisterScreen: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -32,6 +28,8 @@ const RegisterScreen: React.FC = () => {
   const setAccess = useLogin((state) => state.setAccess);
   const setIsLogIn = useLogin((state) => state.setIsLogIn);
   const setOnLogin = useLogin((state) => state.setOnLogin);
+
+  const ref = useLogin((state) => state.ref);
 
   const captchaRef = useRef<ReCAPTCHA>(null);
 
@@ -46,7 +44,7 @@ const RegisterScreen: React.FC = () => {
           const data = await register({
             username: values.username,
             password: values.password,
-            referral: values.referral,
+            referral: ref,
             telegram_id: values.password,
             wallet_address: values.username,
             token,
@@ -94,23 +92,7 @@ const RegisterScreen: React.FC = () => {
               type="text"
               width="100%"
             />
-            <FromField
-              key="confirmPassword"
-              name="confirmPassword"
-              label="Confirm Telegram Id"
-              placeholder="Enter your Telegram Id again"
-              type="text"
-              width="100%"
-            />
 
-            <FromField
-              key="referral"
-              name="referral"
-              label="Referral Code"
-              placeholder="Enter referral code"
-              type="text"
-              width="100%"
-            />
             <ReCAPTCHA
               sitekey="6LfkCRQhAAAAAGKfe-DqStSqB9l4xCJhX5VKB7jR"
               ref={captchaRef}
