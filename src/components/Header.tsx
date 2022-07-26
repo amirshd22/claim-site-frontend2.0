@@ -78,7 +78,7 @@ const Header: React.FC = () => {
                   <i className="bi bi-telephone"></i> ContactUs
                 </NavDropdown.Item>
               </LinkContainer>
-              <NavDropdown.Item href="https://www.twitter.com/vadercash">
+              <NavDropdown.Item href="https://twitter.com/vadercash?t=mlzb7ZZslkT70F5d1Idz6g&s=09">
                 <i className="bi bi-twitter"></i> Twitter
               </NavDropdown.Item>
               <NavDropdown.Item href="https://t.me/vadercash">

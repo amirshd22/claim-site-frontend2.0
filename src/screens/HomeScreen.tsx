@@ -9,6 +9,7 @@ import LoginScreen from "./LoginScreen";
 import RegisterScreen from "./RegisterScreen";
 import { useParams } from "react-router-dom";
 import TelegramHome from "../components/Home/TelegramHome";
+import Timer from "../components/Home/Timer";
 
 const HomeScreen: React.FC = () => {
   const params = useParams();
@@ -45,6 +46,7 @@ const HomeScreen: React.FC = () => {
       </div>
       <Screen>
         <div className="mt-5">
+          <Timer />
           <GlobalInfoSection />
           <TelegramHome />
           <FAQSection />
