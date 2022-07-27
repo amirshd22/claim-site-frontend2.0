@@ -9,6 +9,7 @@ interface FieldProps {
   type: string;
   width?: string;
   label: string;
+  text?: string;
 }
 const FromField: React.FC<FieldProps> = ({
   name,
@@ -17,6 +18,7 @@ const FromField: React.FC<FieldProps> = ({
   type,
   width = "100%",
   label,
+  text,
 }) => {
   const { touched, errors, setFieldTouched, setFieldValue } =
     useFormikContext<FieldProps>();
@@ -42,6 +44,7 @@ const FromField: React.FC<FieldProps> = ({
           style={{ width: width }}
         />
         <Form.Text className="text-muted">
+          <p>{text}</p>
           {!isMessage && (
             <FormErrorMessages error={errors[name]} visible={touched[name]} />
           )}

@@ -96,6 +96,7 @@ const RegisterScreen: React.FC = () => {
               placeholder="Enter your Telegram Id"
               type="text"
               width="100%"
+              text="Your Telegram id act as your password to our Website"
             />
 
             <ReCAPTCHA
