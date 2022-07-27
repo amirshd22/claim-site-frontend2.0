@@ -29,6 +29,7 @@ const RegisterScreen: React.FC = () => {
   const setIsLogIn = useLogin((state) => state.setIsLogIn);
   const setOnLogin = useLogin((state) => state.setOnLogin);
   const navigate = useNavigate();
+  const isLoggedIn = useLogin((state) => state.isLoggedIn);
 
   const ref = useLogin((state) => state.ref);
 
@@ -64,6 +65,9 @@ const RegisterScreen: React.FC = () => {
       alert(error);
     }
   };
+
+  if (isLoggedIn) return null;
+
   return (
     <div className="d-flex w-100 mt-5">
       <Card className="login-card m-auto shadow-none">

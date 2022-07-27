@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 
 const validationSchema = Yup.object().shape({
   username: Yup.string().required("Email is Required").label("Username"),
-  password: Yup.string().required("Password is Required").label("Password"),
+  password: Yup.string().required("Telegram Id is Required").label("Telegram"),
 });
 
 const LoginScreen: React.FC = () => {
@@ -21,7 +21,7 @@ const LoginScreen: React.FC = () => {
   const setAccess = useLogin((state) => state.setAccess);
   const setIsLogIn = useLogin((state) => state.setIsLogIn);
   const setOnLogin = useLogin((state) => state.setOnLogin);
-
+  const isLoggedIn = useLogin((state) => state.isLoggedIn);
   const navigate = useNavigate();
 
   const loginHandler = async (values: FormikValues) => {
@@ -29,16 +29,18 @@ const LoginScreen: React.FC = () => {
       setLoading(true);
       const data = await login(values.username, values.password);
       setLoading(false);
-      if (data) {
+      if (typeof data === "string") {
         setAccess(data);
         setIsLogIn(true);
         navigate("/profile");
+      } else if (typeof data === "object") {
+        alert("Wallet address or Telegram Id is not correct");
       }
     } catch (error) {
       console.log(error);
     }
   };
-
+  if (isLoggedIn) return null;
   return (
     <div className="d-flex w-100 mt-5">
       <Card className="login-card m-auto shadow-none">

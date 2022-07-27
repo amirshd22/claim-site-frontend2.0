@@ -4,12 +4,12 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 
-// import { useLogin } from "../stores";
+import { useLogin } from "../stores";
 import { LinkContainer } from "react-router-bootstrap";
 // import { logout } from "../service";
 
 const Header: React.FC = () => {
-  // const isLoggedIn = useLogin((state) => state.isLoggedIn);
+  const isLoggedIn = useLogin((state) => state.isLoggedIn);
   // const logUserOut = () => {
   //   try {
   //     logout();
@@ -42,6 +42,13 @@ const Header: React.FC = () => {
                 <i className="bi bi-filetype-pdf"></i> White Paper
               </Nav.Link>
             </LinkContainer>
+            {isLoggedIn && (
+              <LinkContainer to="./profile">
+                <Nav.Link>
+                  <i className="bi bi-person"></i> User Balance
+                </Nav.Link>
+              </LinkContainer>
+            )}
           </Nav>
           <Nav>
             <NavDropdown

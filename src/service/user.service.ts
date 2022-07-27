@@ -17,8 +17,9 @@ export const login = async (username: string, password: string) => {
     if (status === 200 && typeof data === "object") {
       localStorage.setItem("userInfo", JSON.stringify(data.access));
       return data.access;
+    } else if (status === 401) {
+      return data;
     }
-    return false;
   } catch (error: any) {
     console.log(error);
   }
