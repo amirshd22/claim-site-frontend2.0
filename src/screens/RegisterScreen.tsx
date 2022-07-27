@@ -10,6 +10,7 @@ import SubmitButton from "../components/forms/SubmitButton";
 import { useLogin } from "../stores";
 import { register } from "../service";
 import ReCAPTCHA from "react-google-recaptcha";
+import { useNavigate } from "react-router-dom";
 
 const validationSchema = Yup.object().shape({
   referral: Yup.string().label("referral"),
@@ -24,10 +25,10 @@ const validationSchema = Yup.object().shape({
 const RegisterScreen: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
-  const isLoggedIn = useLogin((state) => state.isLoggedIn);
   const setAccess = useLogin((state) => state.setAccess);
   const setIsLogIn = useLogin((state) => state.setIsLogIn);
   const setOnLogin = useLogin((state) => state.setOnLogin);
+  const navigate = useNavigate();
 
   const ref = useLogin((state) => state.ref);
 
@@ -53,6 +54,7 @@ const RegisterScreen: React.FC = () => {
             setLoading(false);
             setAccess(data);
             setIsLogIn(true);
+            navigate("/profile");
           }
         } else {
           alert("wrong wallet address");
@@ -62,7 +64,6 @@ const RegisterScreen: React.FC = () => {
       alert(error);
     }
   };
-  if (isLoggedIn) return null;
   return (
     <div className="d-flex w-100 mt-5">
       <Card className="login-card m-auto shadow-none">

@@ -4,20 +4,20 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 
-import { useLogin } from "../stores";
+// import { useLogin } from "../stores";
 import { LinkContainer } from "react-router-bootstrap";
-import { logout } from "../service";
+// import { logout } from "../service";
 
 const Header: React.FC = () => {
-  const isLoggedIn = useLogin((state) => state.isLoggedIn);
-  const logUserOut = () => {
-    try {
-      logout();
-      window.location.reload();
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const isLoggedIn = useLogin((state) => state.isLoggedIn);
+  // const logUserOut = () => {
+  //   try {
+  //     logout();
+  //     window.location.reload();
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
   return (
     <Navbar bg="black" variant="dark" expand="lg" sticky="top">
       <Container>
@@ -42,27 +42,6 @@ const Header: React.FC = () => {
                 <i className="bi bi-filetype-pdf"></i> White Paper
               </Nav.Link>
             </LinkContainer>
-            {isLoggedIn && (
-              <NavDropdown
-                menuVariant="dark"
-                title={
-                  <>
-                    <i className="bi bi-person"></i> Profile
-                  </>
-                }
-                id="basic-nav-dropdown"
-              >
-                <LinkContainer to="/profile">
-                  <NavDropdown.Item active={false}>
-                    <i className="bi bi-person"></i> Profile
-                  </NavDropdown.Item>
-                </LinkContainer>
-
-                <NavDropdown.Item onClick={logUserOut} active={false}>
-                  <i className="bi bi-box-arrow-left"></i> Logout
-                </NavDropdown.Item>
-              </NavDropdown>
-            )}
           </Nav>
           <Nav>
             <NavDropdown
@@ -83,12 +62,6 @@ const Header: React.FC = () => {
               </NavDropdown.Item>
               <NavDropdown.Item href="https://t.me/vadercash">
                 <i className="bi bi-telegram"></i> Telegram
-              </NavDropdown.Item>
-              <NavDropdown.Item href="https://www.youtube.com/vadercash">
-                <i className="bi bi-youtube"></i> Youtube
-              </NavDropdown.Item>
-              <NavDropdown.Item href="https://www.instagram.com/vadercash">
-                <i className="bi bi-instagram"></i> Instagram
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>

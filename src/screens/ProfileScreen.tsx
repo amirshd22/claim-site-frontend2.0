@@ -22,8 +22,9 @@ const ProfileScreen: React.FC = () => {
   const setProfile = useProfile((state) => state.setProfile);
 
   useEffect(() => {
-    if (!isLoggedIn) navigate("/");
-    fetchProfile();
+    if (isLoggedIn) {
+      fetchProfile();
+    }
     // eslint-disable-next-line
   }, [isLoggedIn, navigate]);
 
@@ -41,10 +42,13 @@ const ProfileScreen: React.FC = () => {
   };
 
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(
-      `https://vadercash.com/referral/${profile.id}`
-    );
-    alert("copied");
+    try {
+      navigator.clipboard.writeText(
+        `https://vadercash.com/referral/${profile.id}`
+      );
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const claimHandler = async () => {

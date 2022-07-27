@@ -9,6 +9,7 @@ import { FormikValues } from "formik";
 import SubmitButton from "../components/forms/SubmitButton";
 import { useLogin } from "../stores";
 import { login } from "../service";
+import { useNavigate } from "react-router-dom";
 
 const validationSchema = Yup.object().shape({
   username: Yup.string().required("Email is Required").label("Username"),
@@ -17,10 +18,12 @@ const validationSchema = Yup.object().shape({
 
 const LoginScreen: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
-  const isLoggedIn = useLogin((state) => state.isLoggedIn);
   const setAccess = useLogin((state) => state.setAccess);
   const setIsLogIn = useLogin((state) => state.setIsLogIn);
   const setOnLogin = useLogin((state) => state.setOnLogin);
+
+  const navigate = useNavigate();
+
   const loginHandler = async (values: FormikValues) => {
     try {
       setLoading(true);
@@ -29,12 +32,13 @@ const LoginScreen: React.FC = () => {
       if (data) {
         setAccess(data);
         setIsLogIn(true);
+        navigate("/profile");
       }
     } catch (error) {
       console.log(error);
     }
   };
-  if (isLoggedIn) return null;
+
   return (
     <div className="d-flex w-100 mt-5">
       <Card className="login-card m-auto shadow-none">
