@@ -6,6 +6,7 @@ import HomeScreen from "./screens/HomeScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 import ContactUsScreen from "./screens/ContactUsScreen";
 import Footer from "./components/Footer";
+import WhitepaperScreen from "./screens/WhitepaperScreen";
 const App: React.FC = () => {
   const setAccess = useLogin((state) => state.setAccess);
   const setIsLogIn = useLogin((state) => state.setIsLogIn);
@@ -31,6 +32,7 @@ const App: React.FC = () => {
             <Route path="/referral/:id" element={<HomeScreen />} />
             <Route path="/profile" element={<ProfileScreen />} />
             <Route path="/contact-us" element={<ContactUsScreen />} />
+            <Route path="/whitepaper" element={<WhitepaperScreen />} />
           </Routes>
         </main>
         <Footer />

@@ -37,7 +37,7 @@ const Header: React.FC = () => {
                 <i className="bi bi-house"></i> Home
               </Nav.Link>
             </LinkContainer>
-            <LinkContainer to="./whitepaper.pdf">
+            <LinkContainer to="./whitepaper">
               <Nav.Link>
                 <i className="bi bi-filetype-pdf"></i> White Paper
               </Nav.Link>
