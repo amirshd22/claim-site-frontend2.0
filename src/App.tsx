@@ -7,15 +7,15 @@ import ProfileScreen from "./screens/ProfileScreen";
 import ContactUsScreen from "./screens/ContactUsScreen";
 import Footer from "./components/Footer";
 import WhitepaperScreen from "./screens/WhitepaperScreen";
+import { getCookie } from "./utils";
 const App: React.FC = () => {
   const setAccess = useLogin((state) => state.setAccess);
   const setIsLogIn = useLogin((state) => state.setIsLogIn);
   useEffect(() => {
     try {
-      const userInfo = localStorage.getItem("userInfo");
-
+      const userInfo = getCookie("userId");
       if (userInfo) {
-        setAccess(JSON.parse(userInfo));
+        setAccess(userInfo);
         setIsLogIn(true);
       }
     } catch (error) {

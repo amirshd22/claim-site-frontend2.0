@@ -18,7 +18,7 @@ export const useLogin = create<USER>((set) => ({
   ref: null,
 
   setRef: (ref) => set((state) => ({ ...state, ref })),
-  setAccess: (access) => set((state) => ({ ...state, access })),
+  setAccess: (token) => set((state) => ({ ...state, access: token })),
   setIsLogIn: (data) => set((state) => ({ ...state, isLoggedIn: data })),
 
   setOnLogin: (data) => set((state) => ({ ...state, onLogin: data })),

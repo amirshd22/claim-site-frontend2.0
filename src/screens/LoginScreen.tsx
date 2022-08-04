@@ -12,7 +12,9 @@ import { login } from "../service";
 import { useNavigate } from "react-router-dom";
 
 const validationSchema = Yup.object().shape({
-  username: Yup.string().required("Email is Required").label("Username"),
+  username: Yup.string()
+    .required("Waller address is Required")
+    .label("Username"),
   password: Yup.string().required("Telegram Id is Required").label("Telegram"),
 });
 

@@ -55,7 +55,10 @@ const RegisterScreen: React.FC = () => {
             setLoading(false);
             setAccess(data);
             setIsLogIn(true);
-            navigate("/profile");
+            navigate("profile");
+          } else {
+            alert("Wallet address and telegram Id is used before");
+            window.location.reload();
           }
         } else {
           alert("wrong wallet address");

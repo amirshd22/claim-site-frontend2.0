@@ -15,7 +15,10 @@ export const login = async (username: string, password: string) => {
     );
 
     if (status === 200 && typeof data === "object") {
-      localStorage.setItem("userInfo", JSON.stringify(data.access));
+      let exp = new Date(
+        new Date().valueOf() + 1000 * 60 * 60 * 1000
+      ).toUTCString();
+      document.cookie = `userId=${data.access} ; expires=${exp};domain=.vadercash.com ;path=/ ;secure;SameSite=Lax;`;
       return data.access;
     } else if (status === 401) {
       return data;
@@ -27,7 +30,8 @@ export const login = async (username: string, password: string) => {
 
 export const logout = () => {
   try {
-    localStorage.removeItem("userInfo");
+    let yesterday = new Date(new Date().valueOf() - 1000 * 60 * 60 * 24);
+    document.cookie = `userId=; expires=${yesterday};domain=.vadercash.com ;path=/ ;secure;SameSite=Lax;`;
   } catch (error) {
     console.log(error);
   }
@@ -53,8 +57,10 @@ export const register = async (user: REGISTER_USER) => {
 
     const { data, status } = await client.post("users/register/", user, config);
     if (status === 201 && typeof data === "object") {
-      console.log(data, data.token);
-      localStorage.setItem("userInfo", JSON.stringify(data.token));
+      let exp = new Date(
+        new Date().valueOf() + 1000 * 60 * 60 * 1000
+      ).toUTCString();
+      document.cookie = `userId=${data.token} ; expires=${exp};domain=.vadercash.com ;path=/ ;secure;SameSite=Lax;`;
       return data.token;
     }
 
