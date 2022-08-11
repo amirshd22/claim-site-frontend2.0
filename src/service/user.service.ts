@@ -125,8 +125,9 @@ export const withdraw = async (access: string) => {
     const { data, status } = await client.post("users/withdraw/", {}, config);
     if (status === 200 && typeof data === "object") {
       return data;
+    } else {
+      throw new Error(data.details);
     }
-    throw new Error(data.details);
   } catch (error) {
     alert(error);
   }
