@@ -65,6 +65,7 @@ const ProfileScreen: React.FC = () => {
     try {
       const data = await withdraw(access);
       if (data) {
+        alert("Order created");
         fetchProfile();
       }
     } catch (error) {}
@@ -130,7 +131,7 @@ const ProfileScreen: React.FC = () => {
             <ProfileListGroupBalance
               title="Total withdrawal:"
               value={profile.total_withdraw}
-              prefix={false}
+              prefix
             />
             <ListGroup.Item>
               <p style={{ color: colors.gray }} className="text-center">

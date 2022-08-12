@@ -123,7 +123,7 @@ export const withdraw = async (access: string) => {
       validateStatus: () => true,
     };
     const { data, status } = await client.post("users/withdraw/", {}, config);
-    if (status === 200 && typeof data === "object") {
+    if (status === 201 && typeof data === "object") {
       return data;
     } else {
       throw new Error(data.details);
