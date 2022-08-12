@@ -10,6 +10,7 @@ import RegisterScreen from "./RegisterScreen";
 import { useParams } from "react-router-dom";
 import TelegramHome from "../components/Home/TelegramHome";
 import Timer from "../components/Home/Timer";
+import UserBalance from "../components/Home/UserBalance";
 
 const HomeScreen: React.FC = () => {
   const params = useParams();
@@ -18,6 +19,7 @@ const HomeScreen: React.FC = () => {
   const setRef = useLogin((state) => state.setRef);
 
   const onLogin = useLogin((state) => state.onLogin);
+  const isLoggedIn = useLogin((state) => state.isLoggedIn);
   useEffect(() => {
     fetchGlobal();
   });
@@ -46,6 +48,7 @@ const HomeScreen: React.FC = () => {
       </div>
       <Screen>
         <div className="mt-5">
+          {isLoggedIn && <UserBalance />}
           <Timer />
           <GlobalInfoSection />
           <TelegramHome />
